@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
   const timelineEvents = [
@@ -22,7 +23,7 @@ const About: React.FC = () => {
       <section className="page-title">
         <h2>About Us</h2>
         <div className="breadcrumb">
-          <a href="/">Home</a> <span>&gt;</span> <span>About Us</span>
+          <Link to="/">Home</Link> <span>&gt;</span> <span>About Us</span>
         </div>
       </section>
 

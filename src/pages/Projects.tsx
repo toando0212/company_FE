@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../css/page-common.css';
 
 const Projects: React.FC = () => {
@@ -47,7 +48,7 @@ const Projects: React.FC = () => {
       <section className="page-title">
         <h2>Our Projects</h2>
         <div className="breadcrumb">
-          <a href="/">Home</a> <span>&gt;</span> <span>Projects</span>
+          <Link to="/">Home</Link> <span>&gt;</span> <span>Projects</span>
         </div>
       </section>
 

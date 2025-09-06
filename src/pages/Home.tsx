@@ -1,6 +1,7 @@
 
-
+import { Link } from 'react-router-dom';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../css/home.css';
 
 const Home: React.FC = () => {
@@ -13,8 +14,8 @@ const Home: React.FC = () => {
             <h1>Welcome to Our IT Company</h1>
             <p>We provide the best IT solutions for your business needs</p>
             <div className="hero-buttons">
-              <a href="/services" className="btn btn-primary">Our Services</a>
-              <a href="/contact" className="btn btn-secondary">Contact Us</a>
+              <Link to="/services" className="btn btn-primary">Our Services</Link>
+              <Link to="/contact" className="btn btn-secondary">Contact Us</Link>
             </div>
           </div>
         </div>
@@ -54,7 +55,7 @@ const Home: React.FC = () => {
         <div className="container">
           <h2>Looking for the Best IT Business Solutions?</h2>
           <p>As a app web crawler expert, We will help to organize.</p>
-          <a href="/contact" className="cta-button">Get A Quote</a>
+          <Link to="/contact" className="cta-button">Get A Quote</Link>
         </div>
       </section>
     </div>

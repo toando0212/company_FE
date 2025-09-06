@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/page-common.css';
 
 const Contact: React.FC = () => {
@@ -38,7 +39,7 @@ const Contact: React.FC = () => {
       <section className="page-title">
         <h2>Contact Us</h2>
         <div className="breadcrumb">
-          <a href="/">Home</a> <span>&gt;</span> <span>Contact</span>
+          <Link to="/">Home</Link> <span>&gt;</span> <span>Contact</span>
         </div>
       </section>
 

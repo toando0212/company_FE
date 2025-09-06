@@ -1,0 +1,14 @@
+/* Fix for overflow issues */
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* App container */
+.app-bg {
+  width: 100%;
+  overflow-x: hidden;
+  display: block;
+}

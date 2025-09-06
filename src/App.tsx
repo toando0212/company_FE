@@ -12,6 +12,7 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useRef } from 'react';
 import './css/header.css';
 import './css/transitions.css';
+import './App.css';
 
 function AnimatedRoutes() {
   const location = useLocation();

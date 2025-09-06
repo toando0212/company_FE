@@ -64,7 +64,7 @@ const Projects: React.FC = () => {
             {projects.map((project, index) => (
               <div key={index} className="project-card">
                 <div className="project-image">
-                  <img src={project.image} alt={project.title} />
+                  {/* <img src={project.image} alt={project.title} /> */}
                   <div className="project-overlay">
                     <div className="project-info">
                       <h3>{project.title}</h3>

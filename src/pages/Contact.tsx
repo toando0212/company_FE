@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../css/page-common.css';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({

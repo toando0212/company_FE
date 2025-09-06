@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/page-common.css';
 
 const Services: React.FC = () => {
   const services = [

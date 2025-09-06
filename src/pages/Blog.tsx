@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/page-common.css';
 
 const Blog: React.FC = () => {
   const blogPosts = [
@@ -58,7 +59,7 @@ const Blog: React.FC = () => {
             {blogPosts.map((post, index) => (
               <article key={index} className="blog-card">
                 <div className="blog-image">
-                  <img src={post.image} alt={post.title} />
+                  {/* <img src={post.image} alt={post.title} /> */}
                   <div className="blog-category">{post.category}</div>
                 </div>
                 <div className="blog-content">

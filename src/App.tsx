@@ -9,7 +9,7 @@ import Projects from './pages/Projects';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import './css/about-header.css';
 import './css/transitions.css';
 

@@ -10,7 +10,7 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useRef } from 'react';
-import './css/about-header.css';
+import './css/header.css';
 import './css/transitions.css';
 
 function AnimatedRoutes() {

@@ -39,6 +39,7 @@ body, .app-bg {
   list-style: none;
   padding: 0;
   margin: 0;
+  
 }
 .header-top .info-list li {
   display: flex;

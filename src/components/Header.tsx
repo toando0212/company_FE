@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
+import logo from "../assets/logo_aidc-rm.png";
 const Header: React.FC = () => {
   const location = useLocation();
 
@@ -43,7 +43,7 @@ const Header: React.FC = () => {
           <div className="logo-box">
             <Link to="/">
               <img  
-                  src="../src/assets/logo_aidc-rm.png"
+                  src={logo}
                   alt="Company Logo"
               />
             </Link>

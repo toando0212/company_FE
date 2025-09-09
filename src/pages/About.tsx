@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import sampleImage from '../assets/sample2.jpg'; // Import the image
 const About: React.FC = () => {
   const timelineEvents = [
     { year: '2010', title: 'Get Award', description: 'A People Ops leader who is committed to the growth and development of leaders.' },
@@ -58,7 +58,7 @@ const About: React.FC = () => {
             </div>
             <div className="about-image">
               <img 
-                src="../src/assets/sample2.jpg" 
+                src={sampleImage}
                 alt="Vietnam AI & Digital Logo" 
                 
               />

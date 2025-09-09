@@ -198,7 +198,7 @@
 }
 
 .page-title {
-  background: linear-gradient(rgba(24, 119, 243, 0.7), rgba(24, 119, 243, 0.7)), url('/about-bg.jpg') center/cover no-repeat;
+  background: linear-gradient(rgba(24, 119, 243, 0.7), rgba(24, 119, 243, 0.7)), url('/BG.jpg') center/cover no-repeat;
   min-height: 180px;
   display: flex;
   flex-direction: column;

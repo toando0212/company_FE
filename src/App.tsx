@@ -12,6 +12,7 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useRef } from 'react';
 import './css/header.css';
 import './css/transitions.css';
+import './css/footer.css';
 import './App.css';
 
 function AnimatedRoutes() {
@@ -31,8 +32,8 @@ function AnimatedRoutes() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/blog" element={<Blog />} />
+            {/* <Route path="/projects" element={<Projects />} />
+            <Route path="/blog" element={<Blog />} /> */}
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>

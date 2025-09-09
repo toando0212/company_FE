@@ -8,11 +8,11 @@ const Home: React.FC = () => {
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section className="hero-section">
+      <section className="page-title">
         <div className="container">
-          <div className="hero-content">
-            <h1>Welcome to Our IT Company</h1>
-            <p>We provide the best IT solutions for your business needs</p>
+          <div className="hero-content" style={{justifyContent: 'center', textAlign: 'center'}}>
+            <h2>Welcome to Vietnam AI & Digital transformation technology JSC</h2>
+            <p>We provide the best solutions for your business needs</p>
             <div className="hero-buttons">
               <Link to="/services" className="btn btn-primary">Our Services</Link>
               <Link to="/contact" className="btn btn-secondary">Contact Us</Link>

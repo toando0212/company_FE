@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
         <div className="footer-content">
           <div className="footer-column">
             <i className="fa-solid fa-laptop-code footer-logo" 
-               style={{ fontSize: '48px', color: '#1877f3', marginBottom: '20px' }}>
+               style={{ fontSize: '48px', color: '#59bedd', marginBottom: '20px' }}>
             </i>
             <p>We work with a passion of taking challenges and creating new ones in advertising sector.</p>
           </div>
@@ -19,12 +19,12 @@ const Footer: React.FC = () => {
               <input type="email" placeholder="Your email" />
               <button>Subscribe</button>
             </div>
-            <div className="social-links">
+            {/* <div className="social-links">
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
               <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">Dribbble</a>
               <a href="https://behance.com" target="_blank" rel="noopener noreferrer">Behance</a>
-            </div>
+            </div> */}
           </div>
 
           <div className="footer-column">

@@ -31,10 +31,11 @@ const About: React.FC = () => {
       <section className="about-section">
         <div className="container">
           <div className="about-content">
+            {/* Ảnh minh họa lớn bên trái */}
+            
             <div className="about-text">
               <h2>Choose The Best IT Service Company</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do tempor incididunt ut labore et dolore magna.</p>
-              
               <div className="mission-vision">
                 <div className="mission">
                   <h4>Our Mission</h4>
@@ -49,10 +50,18 @@ const About: React.FC = () => {
                   <p>We adapt our delivery to the way your work, whether as an external provider or as an integrated part of your team.</p>
                 </div>
               </div>
-
-              <a href="https://www.youtube.com/watch?v=kxPCFljwJws" className="video-link" target="_blank" rel="noopener noreferrer">
-                Check details about our company
-              </a>
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: 32, color: '#FFF', fontWeight: 'bold' }}>
+                <Link  to="/" className="video-link"  rel="noopener noreferrer">
+                  Check details about our company
+                </Link>
+              </div>
+            </div>
+            <div className="about-image">
+              <img 
+                src="../src/assets/sample2.jpg" 
+                alt="Vietnam AI & Digital Logo" 
+                
+              />
             </div>
           </div>
         </div>

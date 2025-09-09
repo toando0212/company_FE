@@ -8,8 +8,8 @@ const Header: React.FC = () => {
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About Us' },
     { path: '/services', label: 'Services' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/blog', label: 'Blog' },
+    // { path: '/projects', label: 'Projects' },
+    // { path: '/blog', label: 'Blog' },
     { path: '/contact', label: 'Contact' },
   ];
 
@@ -42,9 +42,10 @@ const Header: React.FC = () => {
         <div className="main-header-inner">
           <div className="logo-box">
             <Link to="/">
-              <i className="fa-solid fa-laptop-code footer-logo" 
-                 style={{ fontSize: '68px', color: '#1877f3', marginTop: '22px' }}>
-              </i>
+              <img  
+                  src="../src/assets/logo_aidc-rm.png"
+                  alt="Company Logo"
+              />
             </Link>
           </div>
           <nav className="main-nav">

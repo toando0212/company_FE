@@ -76,7 +76,7 @@
 
 .video-link {
   display: inline-block;
-  background: #59bedd;
+  background: #59bedd ;
   color: #fff;
   padding: 12px 24px;
   border-radius: 25px;
@@ -161,7 +161,7 @@
 /* Stats Section */
 .stats-section {
   padding: 80px 0;
-  background: linear-gradient(135deg, #1877f3);
+  background: linear-gradient(135deg, #59bedd, #c1c4c7);
   color: #fff;
 }
 
@@ -356,7 +356,7 @@
 
 .contact-form button,
 .submit-btn {
-  background: #1877f3;
+  background: #59bedd;
   color: #fff;
   padding: 12px 32px;
   border-radius: 24px;

@@ -1,4 +1,5 @@
 import React from 'react';
+import footerLogo from '../assets/logo_aidc.png';
 
 const Footer: React.FC = () => {
   return (
@@ -6,9 +7,12 @@ const Footer: React.FC = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-column">
-            <i className="fa-solid fa-laptop-code footer-logo" 
-               style={{ fontSize: '48px', color: '#59bedd', marginBottom: '20px' }}>
-            </i>
+            <img 
+              src={footerLogo} 
+              alt="AIDC Logo" 
+              className="footer-logo"
+              style={{ width: '64px', height: '64px', marginBottom: '20px', objectFit: 'contain' }}
+            />
             <p>We work with a passion of taking challenges and creating new ones in advertising sector.</p>
           </div>
           

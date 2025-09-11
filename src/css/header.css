@@ -98,14 +98,18 @@ body,
 
 /* ⚠️ .social-links KHÔNG TÁCH VÌ DÙNG CHUNG — GIỮ Ở FILE GỐC */
 
+:root {
+  --main-header-h: 72px; /* fallback, sẽ được JS cập nhật đúng chiều cao */
+}
+
 /* ================== MAIN HEADER ================== */
  .main-header {
   background: #fff;
   color: #555;
-  border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   padding: 0;
-  position: relative;
+  top: 0;
+  position: sticky;
   z-index: 10;
   margin: 0;
   max-width: none;
@@ -113,7 +117,26 @@ body,
   width: 100%;
   display: flex;
   flex-direction: row;
+  transition: transform 280ms cubic-bezier(.22,.61,.36,1), background 180ms;
 }
+
+.main-header.is-fixed {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  transform: translateY(0);
+  background: rgba(255,255,255,0.96); /* hoặc màu của bạn */
+  backdrop-filter: saturate(140%) blur(6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  z-index: 1000;
+  animation: headerSlideIn 320ms cubic-bezier(.22,.61,.36,1) forwards;
+}
+/* slide xuống khi trở thành fixed */
+@keyframes headerSlideIn {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(0); }
+}
+
+
 
 .logo-box {
   width: 15%;
@@ -241,7 +264,6 @@ body,
   color: #fff;
 }
 
-/* ================== PAGE TITLE (NẾU CÓ TRONG HEADER) ================== */
 .page-title {
   background: linear-gradient(rgba(24, 119, 243, 0.07), rgba(24, 119, 243, 0.07)), url('../src/assets/BG.jpg') center/cover no-repeat;
   min-height: 220px;
@@ -250,8 +272,23 @@ body,
   justify-content: center;
   align-items: center;
   color: #222 ;
-  margin: 40px 0;
+  margin: 0;
+  height: 85vh;
   position: relative;
+  overflow: hidden;
+}
+
+.page-title-overlay {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 0 16px;
+  
 }
 
 .page-title h2 {

@@ -5,8 +5,8 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
-// import Projects from './pages/Projects';
-// import Blog from './pages/Blog';
+import Customer from './pages/Customer';
+import Career from './pages/Career';
 import Contact from './pages/Contact';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useRef } from 'react';
@@ -32,8 +32,8 @@ function AnimatedRoutes() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            {/* <Route path="/projects" element={<Projects />} />
-            <Route path="/blog" element={<Blog />} /> */}
+            <Route path="/customer" element={<Customer />} />
+            <Route path="/career" element={<Career />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>

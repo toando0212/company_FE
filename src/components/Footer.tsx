@@ -11,9 +11,9 @@ const Footer: React.FC = () => {
               src={footerLogo} 
               alt="AIDC Logo" 
               className="footer-logo"
-              style={{ width: '64px', height: '64px', marginBottom: '20px', objectFit: 'contain' }}
+              style={{ width: '64px', height: '64px', marginBottom: '0', objectFit: 'contain' }}
             />
-            <p>We work with a passion of taking challenges and creating new ones in advertising sector.</p>
+            <p>We work with a passion of taking challenges and creating new ones in information technology sector.</p>
           </div>
           
           <div className="footer-column">
@@ -34,9 +34,10 @@ const Footer: React.FC = () => {
           <div className="footer-column">
             <h4>Official Info:</h4>
             <div className="contact-info">
-              <p>36 Chua Lang<br />Hanoi, Vietnam</p>
-              <p>0123456789</p>
-              <p>Open Hours:<br />Mon - Sat: 8 am - 5 pm<br />Sunday: CLOSED</p>
+              <p><i className="fas fa-map" style={{ marginRight: 6 }} />19n7b KĐT Trung Hòa Nhân Chính, Thanh Xuân, Hà Nội</p>
+              
+              <p><i className="fas fa-phone-flip" style={{ marginRight: 6 }} />0865903798</p>
+              <p><i className="fas fa-map-pin" style={{ marginRight: 6 }} />Open Hours:<br />Mon - Sat: 8 AM - 17:30 PM<br />Sunday: CLOSED</p>
             </div>
           </div>
         </div>

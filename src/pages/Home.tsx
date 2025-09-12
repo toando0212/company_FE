@@ -127,9 +127,9 @@ const Home: React.FC = () => {
       {/* Flash Card Section */}
       <section className="flashcard-section">
         <div className="container">
-          <div className="flashcard-heading-wrap">
-            <h1 className="flashcard-heading">Core services</h1>
-            <span className="flashcard-heading-bg">Core services</span>
+          <div className="heading-wrap">
+            <h1 className="main-heading">Core services</h1>
+            <span className="shadow-heading-bg">Core services</span>
           </div>
           <div className="flashcard-row">
             <div className="flashcard">
@@ -278,9 +278,9 @@ const Home: React.FC = () => {
       </section>
 
       <section className="orbit-section">
-        <div className="flashcard-heading-wrap">
-          <h1 className="flashcard-heading">Why choose us?</h1>
-          <span className="flashcard-heading-bg">Why choose us?</span>
+        <div className="heading-wrap">
+          <h1 className="main-heading">Why choose us?</h1>
+          <span className="shadow-heading-bg">Why choose us?</span>
         </div>
 
         <div className="orbit">

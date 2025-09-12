@@ -20,7 +20,7 @@
   background: transparent;
 }
 /* Flashcard heading overlap effect */
-.flashcard-heading-wrap {
+.heading-wrap {
   position: relative;
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@
   margin-bottom: 10px;
   height: 64px;
 }
-.flashcard-heading {
+.main-heading {
   position: relative;
   z-index: 2;
   font-size: 3rem;
@@ -37,7 +37,7 @@
   margin: 0;
   left: 12vw;
 }
-.flashcard-heading-bg {
+.shadow-heading-bg {
   position: absolute;
   left: 15vw;
   top: 15%;

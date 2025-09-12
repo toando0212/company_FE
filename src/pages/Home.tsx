@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import "../css/home.css";
 import bgImage from "../assets/hp_bg.jpg";
@@ -26,6 +27,7 @@ const OVERLAP = 400; // overlap nhẹ
 const Home: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
+  const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null);
   const timerRef = useRef<number | null>(null);
 
   // Preload ảnh để không “nháy”
@@ -67,6 +69,54 @@ const Home: React.FC = () => {
       if (timerRef.current) window.clearTimeout(timerRef.current);
     };
   }, [index]);
+
+  const flashcardsData = [
+    {
+      id: 0,
+      frontImage: dataIcon,
+      frontAlt: "Data Icon",
+      frontTitle: "Data analysis services, database construction",
+      backTitle: "Data analysis services, database construction",
+      backDetails: [
+        "We provide comprehensive data analysis services and database construction to help organizations transform raw information into actionable insights.",
+        "Our solutions ensure reliable, scalable data infrastructures that support smarter decision-making and sustainable growth."
+      ]
+    },
+    {
+      id: 1,
+      frontImage: aiIcon,
+      frontAlt: "AI Icon",
+      frontTitle: "Application of new technology services",
+      backTitle: "Application of new technology services",
+      backDetails: [
+        "We focus on harnessing the power of AI/ML, including computer vision and large language models (LLMs), to deliver intelligent, adaptive solutions.",
+        "We help businesses integrate these cutting-edge technologies to enhance efficiency, automation, and user experiences."
+      ]
+    },
+    {
+      id: 2,
+      frontImage: htmlIcon,
+      frontAlt: "HTML Icon",
+      frontTitle: "Outsourcing services, software development",
+      backTitle: "Outsourcing services, software development",
+      backDetails: [
+        "Software development services",
+        "Implement product technology transfer, upgrade product versions",
+        "R&D as per requirements"
+      ]
+    },
+    {
+      id: 3,
+      frontImage: consultingIcon,
+      frontAlt: "Consulting Icon",
+      frontTitle: "Consulting, integrating comprehensive IT systems",
+      backTitle: "Consulting, integrating comprehensive IT systems",
+      backDetails: [
+        "We offer comprehensive IT systems, covering infrastructure, applications, and data environments.",
+        "Our team ensures seamless connectivity between legacy and modern platforms, strengthens security, and improves system performance."
+      ]
+    }
+  ];
 
   return (
     <div className="home-page">
@@ -132,147 +182,44 @@ const Home: React.FC = () => {
             <span className="shadow-heading-bg">Core services</span>
           </div>
           <div className="flashcard-row">
-            <div className="flashcard">
-              <div className="flashcard-inner">
-                <div className="flashcard-front">
-                  <img
-                    src={dataIcon}
-                    alt="AI Icon"
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      marginBottom: "12px",
-                      borderRadius: "8px",
-                      objectFit: "cover",
-                      background: "#fff",
-                    }}
-                  />
-                  <h2>Data analysis services, database construction</h2>
-                </div>
-                <div className="flashcard-back">
-                  <div className="flashcard-back-part">
-                    <h2>Data analysis services, database construction</h2>
+            {flashcardsData.map((card) => (
+              <motion.div
+                className="flashcard"
+                key={card.id}
+                layoutId={`card-${card.id}`}
+                onClick={() => setSelectedCardIndex(card.id)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className="flashcard-inner">
+                  <div className="flashcard-front">
+                    <img
+                      src={card.frontImage}
+                      alt={card.frontAlt}
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        marginBottom: "12px",
+                        borderRadius: "8px",
+                        objectFit: "cover",
+                        background: card.id === 0 || card.id === 2 ? "#fff" : "none"
+                      }}
+                    />
+                    <h2>{card.frontTitle}</h2>
                   </div>
-                  <hr className="flashcard-back-sep" />
-                  <div className="flashcard-back-part">
-                    <p>
-                      - We provide comprehensive data analysis services and
-                      database construction to help organizations transform raw
-                      information into actionable insights.
-                    </p>
-                    <p>
-                      - Our solutions ensure reliable, scalable data
-                      infrastructures that support smarter decision-making and
-                      sustainable growth.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flashcard">
-              <div className="flashcard-inner">
-                <div className="flashcard-front">
-                  <img
-                    src={aiIcon}
-                    alt="AI Icon"
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      marginBottom: "12px",
-                      borderRadius: "8px",
-                      objectFit: "cover",
-                    }}
-                  />
-                  <h2>Application of new technology services</h2>
-                </div>
-                <div className="flashcard-back">
-                  <div className="flashcard-back-part">
-                    <h2>Application of new technology services</h2>
-                  </div>
-                  <hr className="flashcard-back-sep" />
-                  <div className="flashcard-back-part">
-                    <p>
-                      - We focus on harnessing the power of AI/ML, including
-                      computer vision and large language models (LLMs), to
-                      deliver intelligent, adaptive solutions.
-                    </p>
-                    <p>
-                      - We help businesses integrate these cutting-edge
-                      technologies to enhance efficiency, automation, and user
-                      experiences.
-                    </p>
+                  <div className="flashcard-back">
+                    <div className="flashcard-back-part">
+                      <h2>{card.backTitle}</h2>
+                    </div>
+                    <hr className="flashcard-back-sep" />
+                    <div className="flashcard-back-part">
+                      {card.backDetails.map((detail, idx) => (
+                        <p key={idx}>{detail}</p>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="flashcard">
-              <div className="flashcard-inner">
-                <div className="flashcard-front">
-                  <img
-                    src={htmlIcon}
-                    alt="AI Icon"
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      marginBottom: "12px",
-                      borderRadius: "8px",
-                      objectFit: "cover",
-                      background: "#fff",
-                    }}
-                  />
-                  <h2>Outsourcing services, software development</h2>
-                </div>
-                <div className="flashcard-back">
-                  <div className="flashcard-back-part">
-                    <h2>Outsourcing services, software development</h2>
-                  </div>
-                  <hr className="flashcard-back-sep" />
-                  <div className="flashcard-back-part">
-                    <p>- Software development services</p>
-                    <p>
-                      - Implement product technology transfer, upgrade product
-                      versions
-                    </p>
-                    <p>- R&D as per requirements</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flashcard">
-              <div className="flashcard-inner">
-                <div className="flashcard-front">
-                  <img
-                    src={consultingIcon}
-                    alt="Consulting Icon"
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      marginBottom: "12px",
-                      borderRadius: "8px",
-                      objectFit: "cover",
-                    }}
-                  />
-                  <h2>Consulting, integrating comprehensive IT systems</h2>
-                </div>
-                <div className="flashcard-back">
-                  <div className="flashcard-back-part">
-                    <h2>Consulting, integrating comprehensive IT systems</h2>
-                  </div>
-                  <hr className="flashcard-back-sep" />
-                  <div className="flashcard-back-part">
-                    <p>
-                      - We offer comprehensive IT systems, covering
-                      infrastructure, applications, and data environments.
-                    </p>
-                    <p>
-                      - Our team ensures seamless connectivity between legacy
-                      and modern platforms, strengthens security, and improves
-                      system performance.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -317,6 +264,53 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Add modal popup for card details */}
+      <AnimatePresence>
+        {selectedCardIndex !== null && (() => {
+          const selectedCard = flashcardsData.find(card => card.id === selectedCardIndex);
+          return (
+            <motion.div
+              className="modal-overlay"
+              onClick={() => setSelectedCardIndex(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={{ zIndex: 1000 }}
+            >
+              <motion.div
+                className="modal-content card-vertical"
+                layoutId={`card-${selectedCardIndex}`}
+                onClick={(e) => e.stopPropagation()}
+                initial={{ borderRadius: 16 }}
+                animate={{ borderRadius: 16 }}
+                exit={{ borderRadius: 16 }}
+              >
+                <div className="modal-body flashcard-front">
+                  <img
+                    src={selectedCard?.frontImage}
+                    alt={selectedCard?.frontAlt}
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      marginBottom: "12px",
+                      borderRadius: "8px",
+                      objectFit: "cover",
+                      background: selectedCardIndex === 0 || selectedCardIndex === 2 ? "#fff" : "none"
+                    }}
+                  />
+                  <h2>{selectedCard?.frontTitle}</h2>
+                  <div className="modal-details">
+                    {selectedCard?.backDetails.map((detail, idx) => (
+                      <p key={idx}>{detail}</p>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          );
+        })()}
+      </AnimatePresence>
     </div>
   );
 };

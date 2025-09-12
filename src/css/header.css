@@ -275,7 +275,7 @@ body,
   margin: 0;
   height: 85vh;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .page-title-overlay {
@@ -288,6 +288,8 @@ body,
   height: 100%;
   text-align: center;
   padding: 0 16px;
+  /* Remove overflow hidden to prevent text cut-off */
+  /* overflow: hidden; */
   
 }
 
@@ -355,6 +357,45 @@ body,
   .page-title h2 {
     font-size: 32px;
   }
+  /* Fix hero section text alignment for small screens - only for pages other than home */
+  .services-page .page-title,
+  .projects-page .page-title,
+  .blog-page .page-title,
+  .contact-page .page-title,
+  .about-page .page-title,
+  .career-page .page-title {
+    align-items: center;
+    text-align: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin: 0 auto;
+    height: auto;
+    min-height: 320px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: visible;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .services-page .page-title-overlay,
+  .projects-page .page-title-overlay,
+  .blog-page .page-title-overlay,
+  .contact-page .page-title-overlay,
+  .about-page .page-title-overlay,
+  .career-page .page-title-overlay {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: visible;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
 }
 
 @media (max-width: 600px) {
@@ -376,5 +417,43 @@ body,
 
   .header-top .info-list li {
     width: 100%;
+  }
+  /* Further improve hero section text for very small screens - only for pages other than home */
+  .services-page .page-title,
+  .projects-page .page-title,
+  .blog-page .page-title,
+  .contact-page .page-title,
+  .about-page .page-title,
+  .career-page .page-title {
+    align-items: center;
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin: 0 auto;
+    min-height: 180px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: visible;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .services-page .page-title-overlay,
+  .projects-page .page-title-overlay,
+  .blog-page .page-title-overlay,
+  .contact-page .page-title-overlay,
+  .about-page .page-title-overlay,
+  .career-page .page-title-overlay {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: visible;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 }

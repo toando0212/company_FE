@@ -2,7 +2,7 @@
 .footer {
   background: #ede9e9;
   color: #ccc;
-  padding: 60px 0 20px;
+  padding: 20px 0 20px;
   position: relative;  /* Added to position the footer content */
 }
 
@@ -11,7 +11,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 40px;
+  gap: 50px;
   max-width: 1200px;
   margin: 0 auto 40px;
 }
@@ -24,7 +24,7 @@
 }
 
 .footer-logo {
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .footer-column h4 {

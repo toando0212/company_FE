@@ -4,40 +4,42 @@ import logo from "../assets/logo_aidc.png";
 
 const Header: React.FC = () => {
   const location = useLocation();
+
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
-  // ----- Sticky-on-scroll: cố định main-header khi cuộn qua sentinel -----
+  // ===== Sticky-on-scroll
   const [fixed, setFixed] = React.useState(false);
   const mainHeaderRef = React.useRef<HTMLElement | null>(null);
   const sentinelRef = React.useRef<HTMLDivElement | null>(null);
 
-  // Quan sát sentinel: khi sentinel rời viewport (cuộn xuống) => fixed = true
   React.useEffect(() => {
     const el = sentinelRef.current;
     if (!el) return;
-
     const io = new IntersectionObserver(
       (entries) => {
         const e = entries[0];
-        // e.isIntersecting = true => đang ở gần top trang (chưa cuộn qua header)
         setFixed(!e.isIntersecting);
       },
-      {
-        root: null,
-        threshold: 0,
-        // margin âm nhỏ để header “bật” sớm mượt hơn
-        rootMargin: "-1px 0px 0px 0px",
-      }
+      { root: null, threshold: 0, rootMargin: "-1px 0px 0px 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  // Khi fixed = true, thêm padding-top cho body/main để nội dung không giật
   React.useEffect(() => {
     const h = mainHeaderRef.current?.offsetHeight ?? 0;
     document.documentElement.style.setProperty("--main-header-h", `${h}px`);
   }, [fixed]);
+
+  // ===== Mobile: hamburger + drawer
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  React.useEffect(() => {
+    // khóa scroll khi mở menu
+    document.documentElement.classList.toggle("no-scroll", mobileOpen);
+    return () => document.documentElement.classList.remove("no-scroll");
+  }, [mobileOpen]);
+
+  const closeMobile = () => setMobileOpen(false);
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -50,7 +52,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      {/* Header Top (nằm trong flow, không cố định) */}
+      {/* Header Top */}
       <div className="header-top">
         <div className="container">
           <div className="header-contact-row">
@@ -70,7 +72,12 @@ const Header: React.FC = () => {
             </span>
             <span className="header-contact-sep">|</span>
             <span className="header-contact-item">
-              <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://facebook.com"
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-facebook-f" />
               </a>
               <a
@@ -96,13 +103,15 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Sentinel: đặt NGAY SAU header-top, trước main-header */}
+      {/* Sentinel: ngay sau header-top */}
       <div ref={sentinelRef} aria-hidden="true" />
 
-      {/* Main Header: bình thường trong flow; khi fixed=true -> position:fixed + slide-in */}
+      {/* Main Header */}
       <header
         ref={mainHeaderRef}
-        className={`main-header ${fixed ? "is-fixed" : ""}`}
+        className={`main-header ${fixed ? "is-fixed" : ""} ${
+          mobileOpen ? "overlay" : ""
+        }`}
       >
         <div className="logo-box">
           <Link to="/">
@@ -110,8 +119,9 @@ const Header: React.FC = () => {
           </Link>
         </div>
 
+        {/* Desktop nav block */}
         <div className="main-nav-block">
-          <nav className="main-nav">
+          <nav className="main-nav" aria-label="Primary">
             <ul>
               {navItems.map((item) => (
                 <li
@@ -124,23 +134,80 @@ const Header: React.FC = () => {
             </ul>
           </nav>
 
-          <div className="language-switcher">
+          <div className="language-switcher hide-on-mobile">
             <div className="language-dropdown">
               <button
                 className="dropdown-toggle"
                 onClick={() => setDropdownOpen((open) => !open)}
+                aria-haspopup="true"
+                aria-expanded={dropdownOpen}
               >
                 <i className="fas fa-globe" style={{ marginRight: 6 }} />
                 VI
               </button>
               {dropdownOpen && (
-                <div className="dropdown-menu">
-                  <button onClick={() => setDropdownOpen(false)}>EN</button>
+                <div className="dropdown-menu" role="menu">
+                  <button
+                    onClick={() => setDropdownOpen(false)}
+                    role="menuitem"
+                  >
+                    EN
+                  </button>
                 </div>
               )}
             </div>
           </div>
         </div>
+
+        {/* Hamburger (mobile only) */}
+        <button
+          className="hamburger"
+          aria-label="Toggle menu"
+          aria-controls="mobile-drawer"
+          aria-expanded={mobileOpen}
+          onClick={() => setMobileOpen((v) => !v)}
+        >
+          {/* FA v6: */}
+          <i className="fa-solid fa-bars"></i>
+        </button>
+
+        {/* Mobile Drawer */}
+        <aside
+          id="mobile-drawer"
+          className={`mobile-drawer ${mobileOpen ? "open" : ""}`}
+          aria-hidden={!mobileOpen}
+        >
+          <nav className="mobile-nav" aria-label="Mobile">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={closeMobile}
+                className={location.pathname === item.path ? "is-active" : ""}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="mobile-lang">
+            <button className="mobile-lang-btn" onClick={closeMobile}>
+              VI
+            </button>
+            <button className="mobile-lang-btn" onClick={closeMobile}>
+              EN
+            </button>
+          </div>
+        </aside>
+
+        {/* Backdrop */}
+        {mobileOpen && (
+          <button
+            className="drawer-backdrop"
+            aria-label="Close menu"
+            onClick={closeMobile}
+          />
+        )}
       </header>
     </>
   );

@@ -1,13 +1,4 @@
 /* Center and style the combined contact row in header */
-.header-contact-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  flex-wrap: wrap;
-  font-size: 15px;
-}
 .header-contact-item {
   display: flex;
   align-items: center;
@@ -456,3 +447,120 @@ body,
     word-break: break-word;
   }
 }
+
+/* ===== Ngăn scroll khi mở menu mobile ===== */
+.no-scroll, .no-scroll body { overflow: hidden; }
+
+/* ===== Hamburger button (ẩn ở desktop) ===== */
+.hamburger{
+  display: none;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,.06);
+  z-index: 1002; /* cao hơn header */
+}
+.hamburger i {
+  font-size: 22px;
+  color: #53bedd;
+}
+
+/* ===== Mobile drawer ===== */
+.mobile-drawer{
+  position: fixed;
+  inset: 0 0 0 auto;             /* dock bên phải */
+  width: min(84vw, 360px);
+  background: #ffffff;
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(.22,.61,.36,1);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 16px 24px;
+  box-shadow: -12px 0 28px rgba(0,0,0,.12);
+}
+.mobile-drawer.open{ transform: translateX(0); }
+
+.drawer-backdrop{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 1090;
+}
+
+/* Links trong mobile */
+.mobile-nav{
+  display: grid; gap: 8px;
+  margin-top: 8px;
+}
+.mobile-nav a{
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: none;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+.mobile-nav a.is-active{
+  background: #e6f3fb;
+  border-color: #c3e5fb;
+}
+
+/* Switcher ngôn ngữ trong mobile */
+.mobile-lang{
+  margin-top: auto;
+  display: flex; gap: 10px;
+  padding-top: 12px;
+  border-top: 1px dashed #e2e8f0;
+}
+.mobile-lang-btn{
+  flex: 1 1 0;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  font-weight: 700;
+}
+
+/* ===== Breakpoints ===== */
+@media (max-width: 900px){
+  /* 1) Ẩn nav block desktop + show hamburger */
+  .main-nav-block{ display: none; }
+  .hamburger{ display: inline-block; }
+
+  /* 2) Layout header mobile: logo trái, hamburger phải */
+  .main-header{
+    position: sticky; top: 0;
+    padding: 8px 8px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 6px;
+    z-index: 1001;
+  }
+  .logo-box{
+    width: auto;
+    justify-content: flex-start;
+    padding-left: 4px;
+  }
+  .logo-box img{ width: 84px; height: auto; }
+
+  /* Top info gọn lại */
+  .header-top .container{
+    gap: 8px;
+    padding: 8px 12px;
+  }
+  .header-top .info-list{ gap: 10px; font-size: 14px; }
+}
+
+/* (Optional) Nếu muốn drawer cùng tông xanh như desktop: */
+
+.mobile-drawer{ background:#59bedd; }
+.mobile-nav a{ background:rgba(255,255,255,.1); color:#fff; border-color:rgba(255,255,255,.18); }
+.mobile-nav a.is-active{ background:rgba(255,255,255,.2); }
+.mobile-lang-btn{ background:#59bedd; color:#fff; border-color:rgba(255,255,255,.35); }
+

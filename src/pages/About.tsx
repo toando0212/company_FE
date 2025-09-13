@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import auBg from "../assets/au_bg.png";
 import "../css/about.css";
 
 import m1 from "../assets/quyet_avatar.jpg";
 import m2 from "../assets/toan_avatar.jpg";
 import m3 from "../assets/dung_avatar.jpg";
+import m4 from "../assets/tan_avatar.jpg";
 
 const DATA = [
   { title1: "PRACTICE", title2: "TRUTH", sub: "is the criterion to test" },
@@ -27,8 +28,8 @@ const MEMBERS: Member[] = [
   {
     name: "Mr. Phạm Huy Tân",
     role: "Chairman of the Board of Directors",
-    bio: "",
-    photo: "#",
+    bio: "With strong leadership and a forward-looking vision, Mr. Huy Tân, Chairman of the Board of Directors, plays a pivotal role in guiding Vietnam AI Technology & Digital Transformation JSC toward sustainable growth and long-term success. As the guardian of corporate governance and strategic direction, he ensures that the company operates with transparency, efficiency, and responsibility, while fostering innovation and expanding partnerships. His leadership is instrumental in positioning the company as a trusted partner and a pioneer in the field of AI and digital transformation.",
+    photo: m4,
   },
   {
     name: "Mr. Trịnh Văn Quyết",
@@ -38,20 +39,20 @@ const MEMBERS: Member[] = [
   },
   {
     name: "Mr. Đỗ Duy Toàn",
-    role: "",
-    bio: "",
+    role: "Deputy Director",
+    bio: "With solid expertise in software engineering and project management, Mr. Duy Toàn, Deputy Director of the Software Development Center, plays a key role in leading product development and ensuring the quality of enterprise solutions at Vietnam AI Technology & Digital Transformation JSC. He focuses on building efficient development processes, fostering innovation within the team, and delivering high-performance software solutions that meet the evolving needs of clients.",
     photo: m2,
   },
   {
     name: "Mr. Lê Đức Dũng",
-    role: "",
-    bio: "",
+    role: "Deputy Director",
+    bio: "Mr. Đức Dũng, Deputy Director of the AI Center for Green Agriculture at Vietnam AI Technology & Digital Transformation JSC, plays a central role in applying artificial intelligence to sustainable farming solutions. He leads initiatives in smart automation, environmental monitoring, and CO₂ process optimization, enabling agricultural enterprises to improve productivity, reduce costs, and achieve long-term sustainability. His leadership fosters innovation and positions the company at the forefront of green agriculture transformation.",
     photo: m3,
   },
   {
     name: "Mr. Nguyễn Tiến Công",
-    role: "",
-    bio: "",
+    role: "Deputy Director",
+    bio: "Mr. Tiến Công, Deputy Director of Technology at Vietnam AI Technology & Digital Transformation JSC, plays a crucial role in shaping the company’s technological direction and driving innovation. He oversees research and development initiatives, enhances the technology infrastructure, and ensures the effective integration of advanced AI and digital solutions to strengthen the company’s market position.",
     photo: "#",
   },
 ];
@@ -140,10 +141,14 @@ const About: React.FC = () => {
               sustainable solutions for our customers.
             </p>
 
-            <Link to="/services" className="video-link about-us-link">
+            <HashLink
+              smooth
+              to="/#core-services"
+              className="video-link about-us-link"
+            >
               <i className="fa-solid fa-arrow-right" />
               Discover Our Services
-            </Link>
+            </HashLink>
           </div>
         </div>
       </section>

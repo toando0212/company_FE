@@ -78,8 +78,8 @@ const Home: React.FC = () => {
       frontTitle: "Data analysis services, database construction",
       backTitle: "Data analysis services, database construction",
       backDetails: [
-        "We provide comprehensive data analysis services and database construction to help organizations transform raw information into actionable insights.",
-        "Our solutions ensure reliable, scalable data infrastructures that support smarter decision-making and sustainable growth."
+        "- We provide comprehensive data analysis services and database construction to help organizations transform raw information into actionable insights.",
+        "- Our solutions ensure reliable, scalable data infrastructures that support smarter decision-making and sustainable growth."
       ]
     },
     {
@@ -89,8 +89,8 @@ const Home: React.FC = () => {
       frontTitle: "Application of new technology services",
       backTitle: "Application of new technology services",
       backDetails: [
-        "We focus on harnessing the power of AI/ML, including computer vision and large language models (LLMs), to deliver intelligent, adaptive solutions.",
-        "We help businesses integrate these cutting-edge technologies to enhance efficiency, automation, and user experiences."
+        "- We focus on harnessing the power of AI/ML, including computer vision and large language models (LLMs), to deliver intelligent, adaptive solutions.",
+        "- We help businesses integrate these cutting-edge technologies to enhance efficiency, automation, and user experiences."
       ]
     },
     {
@@ -100,9 +100,9 @@ const Home: React.FC = () => {
       frontTitle: "Outsourcing services, software development",
       backTitle: "Outsourcing services, software development",
       backDetails: [
-        "Software development services",
-        "Implement product technology transfer, upgrade product versions",
-        "R&D as per requirements"
+        "- Software development services",
+        "- Implement product technology transfer, upgrade product versions",
+        "- R&D as per requirements"
       ]
     },
     {
@@ -112,8 +112,8 @@ const Home: React.FC = () => {
       frontTitle: "Consulting, integrating comprehensive IT systems",
       backTitle: "Consulting, integrating comprehensive IT systems",
       backDetails: [
-        "We offer comprehensive IT systems, covering infrastructure, applications, and data environments.",
-        "Our team ensures seamless connectivity between legacy and modern platforms, strengthens security, and improves system performance."
+        "- We offer comprehensive IT systems, covering infrastructure, applications, and data environments.",
+        "- Our team ensures seamless connectivity between legacy and modern platforms, strengthens security, and improves system performance."
       ]
     }
   ];
@@ -175,7 +175,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Flash Card Section */}
-      <section className="flashcard-section">
+      <section id="core-services" className="flashcard-section">
         <div className="container">
           <div className="heading-wrap">
             <h1 className="main-heading">Core services</h1>

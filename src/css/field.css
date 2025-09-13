@@ -1,0 +1,69 @@
+.field-content {
+  display: flex;
+  width: 40%;
+  max-width: 1200px;
+  overflow: hidden;
+  flex-direction: column;
+  margin-right: 50px;
+}
+.field-title {
+  text-align: left;
+  color: #59bedd;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+/* ===== Tabs Fields ===== */
+.field-tabs {
+  padding: 100px 16px 56px;
+}
+
+.fld-tabbar {
+  width: min(1050px, 100%);
+  margin: 0 auto 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.fld-tab {
+  height: 72px;
+  border-radius: 16px;
+  border: 1px solid #e7e7ea;
+  background: #ffffff;
+  color: #c6c6cc;                /* chữ nhạt như ảnh */
+  font-weight: 800;
+  font-size: clamp(16px, 1.6vw, 22px);
+  letter-spacing: .3px;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+.fld-tab:hover { box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+
+.fld-tab.is-active {
+  background: #53bedd;           /* đỏ chủ đạo */
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 12px 24px rgba(51, 198, 228, 0.25);
+}
+
+.fld-panel {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.fld-desc {
+  margin: 6px auto 0;
+  font-size: clamp(16px, 1.45vw, 20px);
+  line-height: 1.9;
+  color: #222;
+  text-align: center;             /* canh giữa như ảnh */
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .fld-tabbar { grid-template-columns: 1fr; }
+  .fld-tab { height: 60px; }
+}

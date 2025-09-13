@@ -83,37 +83,37 @@ const About: React.FC = () => {
   const MV_DATA: Record<MVYear, MVItem> = {
     "2025": {
       title:
-        "Trở thành đối tác uy tín, tin cậy của các Công ty Công nghệ tầm cỡ trong và ngoài nước",
+        "Become a prestigious and reliable partner of large domestic and foreign technology companies.",
       bullets: [
         {
           icon: "fa-solid fa-shield-halved",
-          text: "Hoàn tất ISO 27001 / SOC 2; Ra mắt AIDC Data & AI Platform",
+          text: "ISO 27001 / SOC 2 Completion; AIDC Data & AI Platform Launch",
         },
         {
           icon: "fa-solid fa-face-smile",
-          text: "NPS ≥ 60, 95% khách hàng quay lại trong 12 tháng.",
+          text: "NPS ≥ 60, 95% of customers return within 12 months.",
         },
         {
           icon: "fa-solid fa-lightbulb",
-          text: "Ứng dụng tiên phong công nghệ mới trong cung cấp dịch vụ.",
+          text: "Pioneering application of new technology in service provision.",
         },
       ],
     },
     "2030": {
       title:
-        "Khẳng định vị thế khu vực, mở rộng hệ sinh thái giải pháp AI & Data cho doanh nghiệp",
+        "Affirming regional position, expanding AI & Data solution ecosystem for businesses",
       bullets: [
         {
           icon: "fa-solid fa-globe-asia",
-          text: "40% doanh thu đến từ thị trường quốc tế; Hiện diện vững ở Đông Nam Á.",
+          text: "40% of revenue comes from international markets; Strong presence in Southeast Asia.",
         },
         {
           icon: "fa-solid fa-cubes-stacked",
-          text: "Danh mục 30+ accelerator/SDK & 10+ giải pháp/bản quyền sáng chế lõi.",
+          text: "Portfolio of 30+ accelerators/SDKs & 10+ core solutions/patents.",
         },
         {
           icon: "fa-solid fa-graduation-cap",
-          text: "Đào tạo 1.000+ kỹ sư AI/Data qua AIDC Academy & cộng đồng.",
+          text: "Training 1,000+ AI/Data engineers through AIDC Academy & community.",
         },
       ],
     },
@@ -128,13 +128,16 @@ const About: React.FC = () => {
             <h2 className="about-us-title">About Us</h2>
             <p className="about-us-desc">
               Vietnam AI Technology and Digital Transformation Joint Stock
-              Company (AIDC corp.) was established with a mission to pioneer in
-              the field of AI, data, and digital technology. We provide
-              comprehensive solutions from software development, data analysis,
-              to R&amp;D in AI, AR/VR, helping businesses optimize operations
-              and enhance competitiveness. We always place innovation and the
-              application of advanced technology at the center, delivering
-              suitable and sustainable solutions for our customers.
+              Company (AIDC Corp.) was established with the mission to pioneer
+              in the fields of AI, data, and digital technology. We provide
+              end-to-end solutions from software development and data analytics
+              to R&D in AI, AR/VR, and green agriculture automation, helping
+              businesses optimize operations and embrace sustainable growth. In
+              addition, we apply AI to monitor and improve CO₂ processes,
+              supporting enterprises in reducing environmental impact.
+              Innovation and the adoption of advanced technologies are always at
+              the core of our vision, enabling us to deliver tailored and
+              sustainable solutions for our customers.
             </p>
 
             <Link to="/services" className="video-link about-us-link">

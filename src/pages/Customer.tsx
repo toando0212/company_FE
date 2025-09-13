@@ -1,29 +1,35 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import '../css/page-common.css';
+import '../css/customer.css';
+import auBg from "../assets/hp_bg.jpg";
 
 const Customer: React.FC = () => {
+  const bullets = [
+    "Continuous innovation to deliver outstanding value.",
+    "Transparency and trust in every partnership.",
+    "Long-term commitment to our customers' sustainable growth.",
+  ];
+
   return (
     <>
-      {/* Page Title Section */}
-      <section className="page-title">
-        <h2>Customer Portal</h2>
-        <div className="breadcrumb">
-          <Link to="/">Home</Link> <span>&gt;</span> <span>Customer</span>
-        </div>
-      </section>
+      <section className="cus-par-heading" style={{ backgroundImage: `url(${auBg})` }}>
+        <div className='cus-par-content'>
+          {/* LEFT */}
+          <div className='cus-par-content-left'>
+            <h1>Customers & Partners</h1>
+            <p>Our Commitment</p>
+            <i className="fas fa-arrow-right-long" />
+          </div>
 
-      {/* Customer Section */}
-      <section className="customer-section">
-        <div className="container">
-          <div className="customer-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div className="section-header" style={{ textAlign: 'center' }}>
-              <h2>Welcome to Our Customer Portal</h2>
-              <p>Here you can view your orders, manage your account, and get support.</p>
-            </div>
-            <Link to="/contact" className="btn btn-primary" style={{ marginTop: 32 }}>
-              Contact Support
-            </Link>
+          {/* RIGHT */}
+          <div className='cus-par-content-right'>
+            <ul className="cus-cards">
+              {bullets.map((text, i) => (
+                <li className="cus-card" key={i}>
+                  <span className="idx">{String(i + 1).padStart(2, "0")}.</span>
+                  <p>{text}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

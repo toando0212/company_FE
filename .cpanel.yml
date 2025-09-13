@@ -1,5 +1,6 @@
 ---
 deployment:
   tasks:
+    - export SOURCEPATH=/home/zxcbadzs/repositories/company_FE/dist/
     - export DEPLOYPATH=/home/zxcbadzs/public_html/
-    - /bin/rsync -av --delete ./ $DEPLOYPATH
+    - /bin/rsync -av --delete $SOURCEPATH $DEPLOYPATH

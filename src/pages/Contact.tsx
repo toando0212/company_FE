@@ -48,7 +48,7 @@ const Contact: React.FC = () => {
                   <i className="fas fa-map-marker-alt"></i>
                   <div>
                     <h4>Address</h4>
-                    <p>36 Chua Lang<br />Hanoi, Vietnam</p>
+                    <p>19n7b KĐT Trung Hòa Nhân Chính, Thanh Xuân, Hà Nội</p>
                   </div>
                 </div>
                 
@@ -56,7 +56,7 @@ const Contact: React.FC = () => {
                   <i className="fas fa-phone"></i>
                   <div>
                     <h4>Phone</h4>
-                    <p>0123456789</p>
+                    <p>0865903798</p>
                   </div>
                 </div>
                 
@@ -64,7 +64,7 @@ const Contact: React.FC = () => {
                   <i className="fas fa-envelope"></i>
                   <div>
                     <h4>Email</h4>
-                    <p>quyetdevil@gmail.com</p>
+                    <p>quyettv1302@gmail.com</p>
                   </div>
                 </div>
                 

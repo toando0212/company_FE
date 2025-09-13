@@ -58,12 +58,12 @@ const Header: React.FC = () => {
           <div className="header-contact-row">
             <span className="header-contact-item">
               <i className="fas fa-phone-flip" style={{ marginRight: 6 }} />
-              0123456789
+              0865903798
             </span>
             <span className="header-contact-sep">|</span>
             <span className="header-contact-item">
               <i className="fas fa-envelope" style={{ marginRight: 6 }} />
-              quyetdevil@gmail.com
+              quyettv1302@gmail.com
             </span>
             <span className="header-contact-sep">|</span>
             <span className="header-contact-item">

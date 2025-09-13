@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/zxcbadzs/public_html/
+    - /bin/rsync -av --delete ./ $DEPLOYPATH

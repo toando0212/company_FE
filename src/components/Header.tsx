@@ -63,7 +63,7 @@ const Header: React.FC = () => {
             <span className="header-contact-sep">|</span>
             <span className="header-contact-item">
               <i className="fas fa-envelope" style={{ marginRight: 6 }} />
-              quyettv1302@gmail.com
+              aidcinnovation@gmail.com
             </span>
             <span className="header-contact-sep">|</span>
             <span className="header-contact-item">

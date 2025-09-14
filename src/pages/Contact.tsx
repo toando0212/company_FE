@@ -1,35 +1,49 @@
-import React, { useState } from 'react';
-import '../css/page-common.css';
+import React, { useState } from "react";
+import "../css/page-common.css";
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    });
+
+    try {
+      const res = await fetch(
+        import.meta.env.VITE_CONTACT_API ?? "http://localhost:8000/api/contact",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.detail || "Send failed");
+      }
+
+      alert("Thanks! Your message has been sent.");
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    } catch (err: any) {
+      alert("Sorry, we couldn't send your message. Please try again later.");
+      console.error(err);
+    }
   };
 
   return (
@@ -41,8 +55,11 @@ const Contact: React.FC = () => {
             {/* Contact Info */}
             <div className="contact-info">
               <h3>Get in Touch</h3>
-              <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
-              
+              <p>
+                We'd love to hear from you. Send us a message and we'll respond
+                as soon as possible.
+              </p>
+
               <div className="contact-details">
                 <div className="contact-item">
                   <i className="fas fa-map-marker-alt"></i>
@@ -51,7 +68,7 @@ const Contact: React.FC = () => {
                     <p>19n7b KĐT Trung Hòa Nhân Chính, Thanh Xuân, Hà Nội</p>
                   </div>
                 </div>
-                
+
                 <div className="contact-item">
                   <i className="fas fa-phone"></i>
                   <div>
@@ -59,20 +76,24 @@ const Contact: React.FC = () => {
                     <p>0865903798</p>
                   </div>
                 </div>
-                
+
                 <div className="contact-item">
                   <i className="fas fa-envelope"></i>
                   <div>
                     <h4>Email</h4>
-                    <p>quyettv1302@gmail.com</p>
+                    <p>aidcinnovation@gmail.com</p>
                   </div>
                 </div>
-                
+
                 <div className="contact-item">
                   <i className="fas fa-clock"></i>
                   <div>
                     <h4>Office Hours</h4>
-                    <p>Mon - Sat: 8 am - 5 pm<br />Sunday: CLOSED</p>
+                    <p>
+                      Mon - Sat: 8 am - 5 pm
+                      <br />
+                      Sunday: CLOSED
+                    </p>
                   </div>
                 </div>
               </div>
@@ -104,7 +125,7 @@ const Contact: React.FC = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="form-row">
                   <div className="form-group">
                     <input
@@ -126,7 +147,7 @@ const Contact: React.FC = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="form-group">
                   <textarea
                     name="message"
@@ -137,8 +158,10 @@ const Contact: React.FC = () => {
                     required
                   ></textarea>
                 </div>
-                
-                <button type="submit" className="submit-btn">Send Message</button>
+
+                <button type="submit" className="submit-btn">
+                  Send Message
+                </button>
               </form>
             </div>
           </div>

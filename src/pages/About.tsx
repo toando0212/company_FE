@@ -7,6 +7,7 @@ import m1 from "../assets/quyet_avatar.jpg";
 import m2 from "../assets/toan_avatar.jpg";
 import m3 from "../assets/dung_avatar.jpg";
 import m4 from "../assets/tan_avatar.jpg";
+import m5 from "../assets/cong_avatar.jpg";
 
 const DATA = [
   { title1: "PRACTICE", title2: "TRUTH", sub: "is the criterion to test" },
@@ -53,7 +54,7 @@ const MEMBERS: Member[] = [
     name: "Mr. Nguyễn Tiến Công",
     role: "Deputy Director",
     bio: "Mr. Tiến Công, Deputy Director of Technology at Vietnam AI Technology & Digital Transformation JSC, plays a crucial role in shaping the company’s technological direction and driving innovation. He oversees research and development initiatives, enhances the technology infrastructure, and ensures the effective integration of advanced AI and digital solutions to strengthen the company’s market position.",
-    photo: "#",
+    photo: m5,
   },
 ];
 

@@ -24,14 +24,13 @@ const Contact: React.FC = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        import.meta.env.VITE_CONTACT_API ?? "http://localhost:8000/api/contact",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
+      const API_URL = import.meta.env.VITE_CONTACT_API || "/api/contact"; // thay vì localhost
+
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));

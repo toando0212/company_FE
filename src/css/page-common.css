@@ -1,3 +1,22 @@
+/* --- Fix input focus border for contact form --- */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #59bedd;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(89, 190, 221, 0.15);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+/* --- Fix contact form input overflow/flex bug (force override) --- */
+.form-row {
+  min-width: 0 !important;
+}
+.form-group {
+  overflow: hidden !important;
+}
+.contact-form input,
+.contact-form textarea {
+  box-sizing: border-box !important;
+}
 /* Career grid styles */
 .career-grid {
   display: grid;
@@ -617,10 +636,14 @@
 }
 .form-row {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 16px;
 }
 .form-group {
   flex: 1;
+  min-width: 0;
+  max-width: 100%;
 }
 @media (max-width: 600px) {
   .form-row {

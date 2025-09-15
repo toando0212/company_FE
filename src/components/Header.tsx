@@ -3,9 +3,27 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo_aidc.png";
 
 const Header: React.FC = () => {
+  // State để kiểm soát ẩn hoàn toàn sidebar sau khi transition đóng xong
+  const [sidebarVisible, setSidebarVisible] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  // Thêm state để kiểm soát class 'open' cho hiệu ứng mở
+  const [sidebarShouldOpen, setSidebarShouldOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (mobileOpen) {
+      setSidebarVisible(true);
+      // Đợi 1 tick để thêm class 'open' (kích hoạt transition)
+      setTimeout(() => setSidebarShouldOpen(true), 10);
+    } else {
+      setSidebarShouldOpen(false);
+    }
+  }, [mobileOpen]);
   const location = useLocation();
 
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
+
+
+  // ===== Mobile: hamburger + drawer
 
   // ===== Sticky-on-scroll
   const [fixed, setFixed] = React.useState(false);
@@ -32,7 +50,6 @@ const Header: React.FC = () => {
   }, [fixed]);
 
   // ===== Mobile: hamburger + drawer
-  const [mobileOpen, setMobileOpen] = React.useState(false);
   React.useEffect(() => {
     // khóa scroll khi mở menu
     document.documentElement.classList.toggle("no-scroll", mobileOpen);
@@ -49,6 +66,11 @@ const Header: React.FC = () => {
     { path: "/career", label: "Career opportunities" },
     { path: "/contact", label: "Contact" },
   ];
+
+  // Xử lý animation end để ẩn hoàn toàn khi đóng
+  const handleSidebarTransitionEnd = () => {
+    if (!mobileOpen) setSidebarVisible(false);
+  };
 
   return (
     <>
@@ -109,9 +131,7 @@ const Header: React.FC = () => {
       {/* Main Header */}
       <header
         ref={mainHeaderRef}
-        className={`main-header ${fixed ? "is-fixed" : ""} ${
-          mobileOpen ? "overlay" : ""
-        }`}
+        className={`main-header ${fixed ? "is-fixed" : ""} ${mobileOpen ? "overlay" : ""}`}
       >
         <div className="logo-box">
           <Link to="/">
@@ -167,48 +187,49 @@ const Header: React.FC = () => {
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((v) => !v)}
         >
-          {/* FA v6: */}
           <i className="fa-solid fa-bars"></i>
         </button>
+      </header>
 
-        {/* Mobile Drawer */}
-        <aside
-          id="mobile-drawer"
-          className={`mobile-drawer ${mobileOpen ? "open" : ""}`}
-          aria-hidden={!mobileOpen}
-        >
-          <nav className="mobile-nav" aria-label="Mobile">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={closeMobile}
-                className={location.pathname === item.path ? "is-active" : ""}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="mobile-lang">
-            <button className="mobile-lang-btn" onClick={closeMobile}>
-              VI
-            </button>
-            <button className="mobile-lang-btn" onClick={closeMobile}>
-              EN
-            </button>
-          </div>
-        </aside>
-
-        {/* Backdrop */}
-        {mobileOpen && (
+      {/* Mobile Sidebar (tách khỏi header, luôn render để transition mượt) */}
+      {sidebarVisible && (
+        <>
+          <aside
+            id="mobile-drawer"
+            className={`mobile-drawer${sidebarShouldOpen ? " open" : ""}`}
+            aria-hidden={!mobileOpen}
+            onTransitionEnd={handleSidebarTransitionEnd}
+            style={{ pointerEvents: mobileOpen ? 'auto' : 'none' }}
+          >
+            <nav className="mobile-nav" aria-label="Mobile">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={closeMobile}
+                  className={location.pathname === item.path ? "is-active" : ""}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="mobile-lang">
+              <button className="mobile-lang-btn" onClick={closeMobile}>
+                VI
+              </button>
+              <button className="mobile-lang-btn" onClick={closeMobile}>
+                EN
+              </button>
+            </div>
+          </aside>
           <button
             className="drawer-backdrop"
             aria-label="Close menu"
             onClick={closeMobile}
+            style={{ pointerEvents: mobileOpen ? 'auto' : 'none', opacity: mobileOpen ? 1 : 0, transition: 'opacity 0.28s' }}
           />
-        )}
-      </header>
+        </>
+      )}
     </>
   );
 };

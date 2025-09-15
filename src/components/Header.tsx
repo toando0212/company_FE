@@ -64,6 +64,7 @@ const Header: React.FC = () => {
     { path: "/field", label: "Field" },
     { path: "/customer", label: "Customers & Partners" },
     { path: "/career", label: "Career opportunities" },
+    { path: "external-blog", label: "Blog", external: true, href: "https://blog.aidccompany.com" },
     { path: "/contact", label: "Contact" },
   ];
 
@@ -148,7 +149,11 @@ const Header: React.FC = () => {
                   key={item.path}
                   className={location.pathname === item.path ? "active" : ""}
                 >
-                  <Link to={item.path}>{item.label}</Link>
+                  {item.external ? (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a>
+                  ) : (
+                    <Link to={item.path}>{item.label}</Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -203,14 +208,27 @@ const Header: React.FC = () => {
           >
             <nav className="mobile-nav" aria-label="Mobile">
               {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={closeMobile}
-                  className={location.pathname === item.path ? "is-active" : ""}
-                >
-                  {item.label}
-                </Link>
+                item.external ? (
+                  <a
+                    key={item.path}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={closeMobile}
+                    className={location.pathname === item.path ? "is-active" : ""}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={closeMobile}
+                    className={location.pathname === item.path ? "is-active" : ""}
+                  >
+                    {item.label}
+                  </Link>
+                )
               ))}
             </nav>
             <div className="mobile-lang">

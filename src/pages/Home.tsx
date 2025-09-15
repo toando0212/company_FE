@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -14,7 +15,10 @@ import consultingIcon from "../assets/consulting_icon.jpg";
 
 const images = [item1, item2, item3];
 const items = [
-  { icon: "fas fa-network-wired", text: "Modern Management & Cutting-Edge Technology" },
+  {
+    icon: "fas fa-network-wired",
+    text: "Modern Management & Cutting-Edge Technology",
+  },
   { icon: "fas fa-certificate", text: "Strong Expertise" },
   { icon: "fas fa-cogs", text: "Comprehensive & Customized Solutions" },
   { icon: "fas fa-handshake", text: "Extensive Partner Network" },
@@ -27,7 +31,9 @@ const OVERLAP = 400; // overlap nhẹ
 const Home: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
-  const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null);
+  const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(
+    null
+  );
   const timerRef = useRef<number | null>(null);
 
   // Preload ảnh để không “nháy”
@@ -79,8 +85,8 @@ const Home: React.FC = () => {
       backTitle: "Data analysis services, database construction",
       backDetails: [
         "- We provide comprehensive data analysis services and database construction to help organizations transform raw information into actionable insights.",
-        "- Our solutions ensure reliable, scalable data infrastructures that support smarter decision-making and sustainable growth."
-      ]
+        "- Our solutions ensure reliable, scalable data infrastructures that support smarter decision-making and sustainable growth.",
+      ],
     },
     {
       id: 1,
@@ -90,8 +96,8 @@ const Home: React.FC = () => {
       backTitle: "Application of new technology services",
       backDetails: [
         "- We focus on harnessing the power of AI/ML, including computer vision and large language models (LLMs), to deliver intelligent, adaptive solutions.",
-        "- We help businesses integrate these cutting-edge technologies to enhance efficiency, automation, and user experiences."
-      ]
+        "- We help businesses integrate these cutting-edge technologies to enhance efficiency, automation, and user experiences.",
+      ],
     },
     {
       id: 2,
@@ -102,8 +108,8 @@ const Home: React.FC = () => {
       backDetails: [
         "- Software development services",
         "- Implement product technology transfer, upgrade product versions",
-        "- R&D as per requirements"
-      ]
+        "- R&D as per requirements",
+      ],
     },
     {
       id: 3,
@@ -113,9 +119,9 @@ const Home: React.FC = () => {
       backTitle: "Consulting, integrating comprehensive IT systems",
       backDetails: [
         "- We offer comprehensive IT systems, covering infrastructure, applications, and data environments.",
-        "- Our team ensures seamless connectivity between legacy and modern platforms, strengthens security, and improves system performance."
-      ]
-    }
+        "- Our team ensures seamless connectivity between legacy and modern platforms, strengthens security, and improves system performance.",
+      ],
+    },
   ];
 
   return (
@@ -141,9 +147,13 @@ const Home: React.FC = () => {
                   our clients.
                 </p>
                 <div className="hero-buttons">
-                  <Link to="/services" className="btn btn-primary">
+                  <HashLink
+                    smooth
+                    to="/#core-services"
+                    className="video-link about-us-link"
+                  >
                     Our Services
-                  </Link>
+                  </HashLink>
                   <Link to="/contact" className="btn btn-secondary">
                     Contact Us
                   </Link>
@@ -188,7 +198,7 @@ const Home: React.FC = () => {
                 key={card.id}
                 layoutId={`card-${card.id}`}
                 onClick={() => setSelectedCardIndex(card.id)}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
               >
                 <div className="flashcard-inner">
                   <div className="flashcard-front">
@@ -201,7 +211,8 @@ const Home: React.FC = () => {
                         marginBottom: "12px",
                         borderRadius: "8px",
                         objectFit: "cover",
-                        background: card.id === 0 || card.id === 2 ? "#fff" : "none"
+                        background:
+                          card.id === 0 || card.id === 2 ? "#fff" : "none",
                       }}
                     />
                     <h2>{card.frontTitle}</h2>
@@ -257,8 +268,9 @@ const Home: React.FC = () => {
             <div className="center-card">
               <div className="badge">Growing Together</div>
               <p>
-                Beyond providing services, we position ourselves as a strategic partner, 
-                co-creating long-term success in the digital transformation journey.
+                Beyond providing services, we position ourselves as a strategic
+                partner, co-creating long-term success in the digital
+                transformation journey.
               </p>
             </div>
           </div>
@@ -267,49 +279,55 @@ const Home: React.FC = () => {
 
       {/* Add modal popup for card details */}
       <AnimatePresence>
-        {selectedCardIndex !== null && (() => {
-          const selectedCard = flashcardsData.find(card => card.id === selectedCardIndex);
-          return (
-            <motion.div
-              className="modal-overlay"
-              onClick={() => setSelectedCardIndex(null)}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              style={{ zIndex: 1000 }}
-            >
+        {selectedCardIndex !== null &&
+          (() => {
+            const selectedCard = flashcardsData.find(
+              (card) => card.id === selectedCardIndex
+            );
+            return (
               <motion.div
-                className="modal-content card-vertical"
-                layoutId={`card-${selectedCardIndex}`}
-                onClick={(e) => e.stopPropagation()}
-                initial={{ borderRadius: 16 }}
-                animate={{ borderRadius: 16 }}
-                exit={{ borderRadius: 16 }}
+                className="modal-overlay"
+                onClick={() => setSelectedCardIndex(null)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                style={{ zIndex: 1000 }}
               >
-                <div className="modal-body flashcard-front">
-                  <img
-                    src={selectedCard?.frontImage}
-                    alt={selectedCard?.frontAlt}
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      marginBottom: "12px",
-                      borderRadius: "8px",
-                      objectFit: "cover",
-                      background: selectedCardIndex === 0 || selectedCardIndex === 2 ? "#fff" : "none"
-                    }}
-                  />
-                  <h2>{selectedCard?.frontTitle}</h2>
-                  <div className="modal-details">
-                    {selectedCard?.backDetails.map((detail, idx) => (
-                      <p key={idx}>{detail}</p>
-                    ))}
+                <motion.div
+                  className="modal-content card-vertical"
+                  layoutId={`card-${selectedCardIndex}`}
+                  onClick={(e) => e.stopPropagation()}
+                  initial={{ borderRadius: 16 }}
+                  animate={{ borderRadius: 16 }}
+                  exit={{ borderRadius: 16 }}
+                >
+                  <div className="modal-body flashcard-front">
+                    <img
+                      src={selectedCard?.frontImage}
+                      alt={selectedCard?.frontAlt}
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        marginBottom: "12px",
+                        borderRadius: "8px",
+                        objectFit: "cover",
+                        background:
+                          selectedCardIndex === 0 || selectedCardIndex === 2
+                            ? "#fff"
+                            : "none",
+                      }}
+                    />
+                    <h2>{selectedCard?.frontTitle}</h2>
+                    <div className="modal-details">
+                      {selectedCard?.backDetails.map((detail, idx) => (
+                        <p key={idx}>{detail}</p>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          );
-        })()}
+            );
+          })()}
       </AnimatePresence>
     </div>
   );

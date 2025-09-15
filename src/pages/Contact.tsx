@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../css/page-common.css";
 
+type FieldEl = HTMLInputElement | HTMLTextAreaElement;
+
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -10,26 +12,41 @@ const Contact: React.FC = () => {
     message: "",
   });
 
+  // Dùng cho onChange (ChangeEvent)
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<FieldEl>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value } as typeof prev));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Dùng cho onInput (FormEvent) – tránh lỗi TS với onInput
+  const handleInput = (
+    e: React.FormEvent<FieldEl>
+  ) => {
+    const el = e.currentTarget;
+    setFormData((prev) => ({ ...prev, [el.name]: el.value } as typeof prev));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      const API_URL = import.meta.env.VITE_CONTACT_API || "/api/contact"; // thay vì localhost
+    // Lấy dữ liệu trực tiếp từ form để chắc chắn bắt được autofill
+    const fd = new FormData(e.currentTarget);
+    const payload = {
+      name: (fd.get("name") || "").toString().trim(),
+      email: (fd.get("email") || "").toString().trim(),
+      phone: (fd.get("phone") || "").toString().trim(),
+      subject: (fd.get("subject") || "").toString().trim(),
+      message: (fd.get("message") || "").toString().trim(),
+    };
 
+    try {
+      const API_URL = import.meta.env.VITE_CONTACT_API || "/api/contact";
       const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
@@ -39,7 +56,8 @@ const Contact: React.FC = () => {
 
       alert("Thanks! Your message has been sent.");
       setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-    } catch (err: any) {
+      e.currentTarget.reset();
+    } catch (err) {
       alert("Sorry, we couldn't send your message. Please try again later.");
       console.error(err);
     }
@@ -101,7 +119,7 @@ const Contact: React.FC = () => {
             {/* Contact Form */}
             <div className="contact-form">
               <h3>Send Message</h3>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} autoComplete="on">
                 <div className="form-row">
                   <div className="form-group">
                     <input
@@ -110,6 +128,8 @@ const Contact: React.FC = () => {
                       placeholder="Your Name"
                       value={formData.name}
                       onChange={handleChange}
+                      onInput={handleInput}       // dùng FormEvent -> đúng kiểu TS
+                      autoComplete="name"
                       required
                     />
                   </div>
@@ -120,6 +140,8 @@ const Contact: React.FC = () => {
                       placeholder="Your Email"
                       value={formData.email}
                       onChange={handleChange}
+                      onInput={handleInput}
+                      autoComplete="email"
                       required
                     />
                   </div>
@@ -133,6 +155,8 @@ const Contact: React.FC = () => {
                       placeholder="Your Phone"
                       value={formData.phone}
                       onChange={handleChange}
+                      onInput={handleInput}
+                      autoComplete="tel"
                     />
                   </div>
                   <div className="form-group">
@@ -142,6 +166,8 @@ const Contact: React.FC = () => {
                       placeholder="Subject"
                       value={formData.subject}
                       onChange={handleChange}
+                      onInput={handleInput}
+                      autoComplete="off"
                       required
                     />
                   </div>
@@ -154,6 +180,8 @@ const Contact: React.FC = () => {
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
+                    onInput={handleInput}
+                    autoComplete="off"
                     required
                   ></textarea>
                 </div>

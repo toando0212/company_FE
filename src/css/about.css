@@ -49,8 +49,8 @@
 
 /* Carousel */
 .core-carousel {
-  --slideW: clamp(280px, 42vw, 350px);
-  --gap: clamp(24px, 6vw, 48px);
+  --slideW: clamp(220px, 35vw, 350px);
+  --gap: clamp(16px, 4vw, 48px);
   --sideScale: 0.68;
 
   position: relative;
@@ -73,6 +73,12 @@
   display: grid;
   place-items: center;
   transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  outline: none;
+  box-shadow: none;
+}
+.nav-arrow:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 .nav-arrow:hover {
   background: #e7e7e7;
@@ -189,6 +195,52 @@
   opacity: 0.35;
   cursor: not-allowed;
   transform: none !important;
+}
+
+/* Responsive cho core value trên màn hình nhỏ */
+@media (max-width: 768px) {
+  .core-carousel {
+    --slideW: clamp(200px, 45vw, 280px);
+    --gap: clamp(12px, 3vw, 24px);
+    grid-template-columns: 50px 1fr 50px;
+  }
+  
+  .nav-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .circle .t1 {
+    font-size: clamp(20px, 4vw, 32px);
+  }
+  
+  .circle .sub {
+    font-size: clamp(10px, 2.5vw, 16px);
+  }
+  
+  .circle .t2 {
+    font-size: clamp(12px, 3vw, 18px);
+  }
+}
+
+@media (max-width: 480px) {
+  .core-carousel {
+    --slideW: clamp(180px, 50vw, 240px);
+    --gap: clamp(8px, 2vw, 16px);
+    grid-template-columns: 40px 1fr 40px;
+    gap: 5px;
+  }
+  
+  .nav-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  
+  .core-value {
+    padding: 50px 10px 30px 10px;
+  }
 }
 
 /* ================== Organization section========================== */
@@ -358,6 +410,24 @@
   }
   .org-right {
     padding-right: 0;
+  }
+
+  /* Hiệu ứng chuyển động cho avatar và info ở chế độ mobile */
+  .org-wrap .avatar-lg,
+  .org-wrap .org-right {
+    transition: opacity 0.5s cubic-bezier(0.22, 0.8, 0.24, 1),
+                transform 0.5s cubic-bezier(0.22, 0.8, 0.24, 1);
+    will-change: opacity, transform;
+  }
+  .org-wrap .avatar-lg.animating,
+  .org-wrap .org-right.animating {
+    opacity: 0;
+    transform: translateX(40px);
+    pointer-events: none;
+  }
+  .org-wrap .avatar-lg.animating.reverse,
+  .org-wrap .org-right.animating.reverse {
+    transform: translateX(-40px);
   }
 }
 

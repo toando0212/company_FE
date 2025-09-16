@@ -562,7 +562,7 @@ body,
 }
 
 /* ===== Breakpoints ===== */
-@media (max-width: 900px){
+@media (max-width: 1200px){
   /* 1) Ẩn nav block desktop + show hamburger */
   .main-nav-block{ display: none; }
   .hamburger{ display: inline-block; }

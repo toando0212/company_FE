@@ -554,8 +554,10 @@
 
 .orbit{
   position: relative;
-  width: var(--orbit-size);
-  height: var(--orbit-size);
+  width: 100%;
+  max-width: var(--orbit-size);
+  height: auto;
+  aspect-ratio: 1/1;
   margin: 60px auto;
 }
 
@@ -616,11 +618,12 @@
   border-radius:50%;
   box-shadow: var(--card-shadow);
   text-align:center;
-  padding: 24px 22px;
+  padding: 18px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction:column;
+  overflow: hidden;
 }
 .center-card .badge{
   color: var(--brand);
@@ -629,6 +632,21 @@
 }
 .center-card p{
   margin:0; color:#444; line-height:1.5;
+  font-size:clamp(12px, 3vw, 1.1rem);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 95%;
+}
+@media (max-width: 480px){
+  .center-card p {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    font-size: 12px;
+  }
 }
 .badge {
   font-size: 1.4rem;
@@ -655,11 +673,24 @@
 /* Responsive nhỏ */
 @media (max-width: 640px){
   :root{
-    --orbit-size: 360px;
-    --center-size: 260px;
-    --speed: 18s;
+    --orbit-size: 320px;
+    --center-size: 180px;
+    --speed: 16s;
+    --card-size: 110px;
   }
-  .orbit-card{ width: 180px; padding: 10px 12px; }
+  .orbit-card{ width: var(--card-size); height: var(--card-size); padding: 8px 8px; }
+  .center-card { width: var(--center-size); height: var(--center-size); }
+}
+
+@media (max-width: 480px){
+  :root{
+    --orbit-size: 220px;
+    --center-size: 120px;
+    --card-size: 70px;
+  }
+  .orbit-card{ width: var(--card-size); height: var(--card-size); font-size: 12px; }
+  .center-card { width: var(--center-size); height: var(--center-size); padding: 12px 6px; }
+  .center-card .badge { font-size: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

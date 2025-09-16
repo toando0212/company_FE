@@ -259,6 +259,8 @@ const About: React.FC = () => {
 function Directors() {
   const [idx, setIdx] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [animating, setAnimating] = useState(false);
+  const [reverse, setReverse] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 700);
@@ -267,26 +269,55 @@ function Directors() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Chuyển trái/phải
-  const prev = () => setIdx((i) => (i === 0 ? MEMBERS.length - 1 : i - 1));
-  const next = () => setIdx((i) => (i === MEMBERS.length - 1 ? 0 : i + 1));
+  const handleChange = (nextIdx: number, isReverse = false) => {
+    if (nextIdx === idx) return;
+    setReverse(isReverse);
+    setAnimating(true);
+    setTimeout(() => {
+      setIdx(nextIdx);
+      setAnimating(false);
+    }, 450); // khớp với transition 0.45s
+  };
+
+  const prev = () => handleChange(idx === 0 ? MEMBERS.length - 1 : idx - 1, true);
+  const next = () => handleChange(idx === MEMBERS.length - 1 ? 0 : idx + 1, false);
 
   if (isMobile) {
-    // Carousel mobile
     return (
-      <div className="org-wrap" style={{justifyItems: 'center'}}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24 }}>
+      <div className="org-wrap" style={{ justifyItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 24,
+          }}
+        >
           <button className="nav-arrow left" onClick={prev} aria-label="Prev">
             <i className="fas fa-less-than"></i>
           </button>
-          <div className="avatar avatar-lg active">
+          <div
+            className={`avatar avatar-lg active ${
+              animating ? "animating" : "next-in"
+            } ${reverse ? "reverse" : ""}`}
+          >
             <img src={MEMBERS[idx].photo} alt={MEMBERS[idx].name} />
           </div>
           <button className="nav-arrow right" onClick={next} aria-label="Next">
             <i className="fas fa-greater-than"></i>
           </button>
         </div>
-        <div className="org-right" style={{paddingRight:0, textAlign:'center', maxWidth:320, margin:'0 auto'}}>
+        <div
+          className={`org-right ${
+            animating ? "animating" : "next-in"
+          } ${reverse ? "reverse" : ""}`}
+          style={{
+            paddingRight: 0,
+            textAlign: "center",
+            maxWidth: 320,
+            margin: "0 auto",
+          }}
+        >
           <h2 className="org-name">{MEMBERS[idx].name}</h2>
           <div className="org-role">{MEMBERS[idx].role}</div>
           <p className="org-bio">{MEMBERS[idx].bio}</p>
@@ -295,55 +326,24 @@ function Directors() {
     );
   }
 
-  // Desktop: giữ nguyên layout 5 chấm
   return (
     <div className="org-wrap">
       <div className="org-left">
         <div className="org-portrait five-dots">
-          <button
-            type="button"
-            className={`avatar avatar-lg ${idx === 0 ? "active" : ""}`}
-            onClick={() => setIdx(0)}
-            aria-label={MEMBERS[0].name}
-          >
-            <img src={MEMBERS[0].photo} alt={MEMBERS[0].name} />
-          </button>
-          <button
-            type="button"
-            className={`avatar avatar-sm dot tl ${idx === 1 ? "active" : ""}`}
-            onClick={() => setIdx(1)}
-            aria-label={MEMBERS[1].name}
-            title={MEMBERS[1].name}
-          >
-            <img src={MEMBERS[1].photo} alt={MEMBERS[1].name} />
-          </button>
-          <button
-            type="button"
-            className={`avatar avatar-sm dot rt ${idx === 2 ? "active" : ""}`}
-            onClick={() => setIdx(2)}
-            aria-label={MEMBERS[2].name}
-            title={MEMBERS[2].name}
-          >
-            <img src={MEMBERS[2].photo} alt={MEMBERS[2].name} />
-          </button>
-          <button
-            type="button"
-            className={`avatar avatar-sm dot rb ${idx === 3 ? "active" : ""}`}
-            onClick={() => setIdx(3)}
-            aria-label={MEMBERS[3].name}
-            title={MEMBERS[3].name}
-          >
-            <img src={MEMBERS[3].photo} alt={MEMBERS[3].name} />
-          </button>
-          <button
-            type="button"
-            className={`avatar avatar-sm dot bl ${idx === 4 ? "active" : ""}`}
-            onClick={() => setIdx(4)}
-            aria-label={MEMBERS[4].name}
-            title={MEMBERS[4].name}
-          >
-            <img src={MEMBERS[4].photo} alt={MEMBERS[4].name} />
-          </button>
+          {MEMBERS.map((member, i) => (
+            <button
+              key={i}
+              type="button"
+              className={`avatar avatar-sm dot ${
+                i === idx ? "active" : ""
+              }`}
+              onClick={() => setIdx(i)}
+              aria-label={member.name}
+              title={member.name}
+            >
+              <img src={member.photo} alt={member.name} />
+            </button>
+          ))}
         </div>
       </div>
       <div className="org-right">

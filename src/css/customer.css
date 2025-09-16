@@ -62,7 +62,7 @@
   font-size: clamp(28px, 3vw, 36px);
   line-height: 1;
   letter-spacing: 1px;
-  color: #e7e7ea; /* số mờ */
+  color: #59bedd; /* số mờ */
   margin-right: 6px;
 }
 .cus-card p {

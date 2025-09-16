@@ -86,7 +86,7 @@ const Career: React.FC = () => {
                   </div>
                   <h3 className="career-item__title">{pos.title}</h3>
                   <p className="career-item__desc">{pos.description}</p>
-                  <Link to="" className="career-item__btn">
+                  <Link to="/contact" className="career-item__btn">
                     Apply Now
                   </Link>
                 </div>

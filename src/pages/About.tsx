@@ -255,16 +255,51 @@ const About: React.FC = () => {
 };
 
 /* ===== Directors component (ảnh click -> viền đôi xanh + đổi thông tin) ===== */
-function Directors() {
-  // 0 = Chủ tịch (ảnh lớn trái)
-  const [idx, setIdx] = useState(0);
 
+function Directors() {
+  const [idx, setIdx] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 700);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Chuyển trái/phải
+  const prev = () => setIdx((i) => (i === 0 ? MEMBERS.length - 1 : i - 1));
+  const next = () => setIdx((i) => (i === MEMBERS.length - 1 ? 0 : i + 1));
+
+  if (isMobile) {
+    // Carousel mobile
+    return (
+      <div className="org-wrap" style={{justifyItems: 'center'}}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24 }}>
+          <button className="nav-arrow left" onClick={prev} aria-label="Prev">
+            <i className="fas fa-less-than"></i>
+          </button>
+          <div className="avatar avatar-lg active">
+            <img src={MEMBERS[idx].photo} alt={MEMBERS[idx].name} />
+          </div>
+          <button className="nav-arrow right" onClick={next} aria-label="Next">
+            <i className="fas fa-greater-than"></i>
+          </button>
+        </div>
+        <div className="org-right" style={{paddingRight:0, textAlign:'center', maxWidth:320, margin:'0 auto'}}>
+          <h2 className="org-name">{MEMBERS[idx].name}</h2>
+          <div className="org-role">{MEMBERS[idx].role}</div>
+          <p className="org-bio">{MEMBERS[idx].bio}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop: giữ nguyên layout 5 chấm
   return (
     <div className="org-wrap">
-      {/* Cột trái: layout 1 lớn + 4 nhỏ như hình */}
       <div className="org-left">
         <div className="org-portrait five-dots">
-          {/* Ảnh lớn (Chủ tịch) */}
           <button
             type="button"
             className={`avatar avatar-lg ${idx === 0 ? "active" : ""}`}
@@ -273,9 +308,6 @@ function Directors() {
           >
             <img src={MEMBERS[0].photo} alt={MEMBERS[0].name} />
           </button>
-
-          {/* 4 ảnh nhỏ được đặt cố định theo vị trí */}
-          {/* Trên-trái */}
           <button
             type="button"
             className={`avatar avatar-sm dot tl ${idx === 1 ? "active" : ""}`}
@@ -285,8 +317,6 @@ function Directors() {
           >
             <img src={MEMBERS[1].photo} alt={MEMBERS[1].name} />
           </button>
-
-          {/* Trên-phải */}
           <button
             type="button"
             className={`avatar avatar-sm dot rt ${idx === 2 ? "active" : ""}`}
@@ -296,8 +326,6 @@ function Directors() {
           >
             <img src={MEMBERS[2].photo} alt={MEMBERS[2].name} />
           </button>
-
-          {/* Dưới-phải */}
           <button
             type="button"
             className={`avatar avatar-sm dot rb ${idx === 3 ? "active" : ""}`}
@@ -307,8 +335,6 @@ function Directors() {
           >
             <img src={MEMBERS[3].photo} alt={MEMBERS[3].name} />
           </button>
-
-          {/* Dưới-trái */}
           <button
             type="button"
             className={`avatar avatar-sm dot bl ${idx === 4 ? "active" : ""}`}
@@ -320,8 +346,6 @@ function Directors() {
           </button>
         </div>
       </div>
-
-      {/* Cột phải: text thay đổi theo ảnh chọn */}
       <div className="org-right">
         <h2 className="org-name">{MEMBERS[idx].name}</h2>
         <div className="org-role">{MEMBERS[idx].role}</div>

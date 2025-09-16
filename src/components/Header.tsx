@@ -100,7 +100,7 @@ const Header: React.FC = () => {
             <span className="header-contact-sep">|</span>
             <span className="header-contact-item">
               <i className="fas fa-map" style={{ marginRight: 6 }} />
-              19n7b KĐT Trung Hòa Nhân Chính, Thanh Xuân, Hà Nội
+              19N7b KĐT Trung Hòa Nhân Chính, Thanh Xuân, Hà Nội
             </span>
             <span className="header-contact-sep">|</span>
             <span className="header-contact-item">
@@ -177,7 +177,7 @@ const Header: React.FC = () => {
                 aria-expanded={dropdownOpen}
               >
                 <i className="fas fa-globe" style={{ marginRight: 6 }} />
-                VI
+                EN
               </button>
               {dropdownOpen && (
                 <div className="dropdown-menu" role="menu">
@@ -185,7 +185,7 @@ const Header: React.FC = () => {
                     onClick={() => setDropdownOpen(false)}
                     role="menuitem"
                   >
-                    EN
+                    VI
                   </button>
                 </div>
               )}

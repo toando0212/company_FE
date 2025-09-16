@@ -58,14 +58,23 @@ const Header: React.FC = () => {
 
   const closeMobile = () => setMobileOpen(false);
 
-  const navItems = [
+  type NavItem = {
+    path: string;
+    label: string;
+    external?: boolean;
+    href?: string;
+  };
+
+  const navItems: NavItem[] = [
     { path: "/", label: "Home" },
     { path: "/about", label: "About Us" },
     { path: "/field", label: "Field" },
     { path: "/customer", label: "Customers & Partners" },
     { path: "/career", label: "Career opportunities" },
-    { path: "external-blog", label: "Blog", external: true, href: "https://blog.aidccompany.com" },
+    { path: "/blog", label: "Blog" },
     { path: "/contact", label: "Contact" },
+    // Example external link:
+    // { path: "/external", label: "External", external: true, href: "https://example.com" },
   ];
 
   // Xử lý animation end để ẩn hoàn toàn khi đóng

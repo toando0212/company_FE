@@ -7,6 +7,7 @@ import About from './pages/About';
 import Field from './pages/Field';
 import Customer from './pages/Customer';
 import Career from './pages/Career';
+import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useRef } from 'react';
@@ -34,6 +35,7 @@ function AnimatedRoutes() {
             <Route path="/field" element={<Field />} />
             <Route path="/customer" element={<Customer />} />
             <Route path="/career" element={<Career />} />
+            <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>

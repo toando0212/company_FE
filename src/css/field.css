@@ -96,3 +96,67 @@
   .fld-tabbar { grid-template-columns: 1fr; }
   .fld-tab { height: 60px; }
 }
+
+.field-hero-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 500px;
+}
+.field-hero-wrap .field-content {
+  width: 40%;
+  max-width: 600px;
+  margin-right: 40px;
+}
+.field-hero-wrap .about-us.field-bg {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 320px;
+  height: 380px;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 720px) {
+  .field-hero-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: unset;
+    width: 100%;
+    padding-top: 32px;
+  }
+  .field-hero-wrap .field-content {
+    width: 100%;
+    max-width: unset;
+    margin-right: 0;
+    text-align: center;
+  }
+  .field-title {
+    text-align: center;
+  }
+  .field-hero-wrap .about-us.field-bg {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    min-height: unset;
+    border-radius: 0;
+    box-shadow: none;
+    background: none !important;
+    gap: 12px;
+    margin-top: 18px;
+    justify-content: center;
+  }
+  .field-hero-wrap .about-us.field-bg > div {
+    height: 120px !important;
+    min-height: unset !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+}

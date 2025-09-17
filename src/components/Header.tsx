@@ -71,7 +71,7 @@ const Header: React.FC = () => {
     { path: "/field", label: "Field" },
     { path: "/customer", label: "Customers & Partners" },
     { path: "/career", label: "Career opportunities" },
-    { path: "/blog", label: "Blog" },
+    { path: "/blog", label: "Blog", external: true, href: "https://blog.aidccompany.com" },
     { path: "/contact", label: "Contact" },
     // Example external link:
     // { path: "/external", label: "External", external: true, href: "https://example.com" },

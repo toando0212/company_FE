@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "../css/field.css";
-import auBg from "../assets/intro_img.jpg";
+import auBg1 from "../assets/carbon1.jpg";
+import auBg2 from "../assets/carbon2.jpg";
+import auBg3 from "../assets/carbon3.png";
+
 
 const Field: React.FC = () => {
   // Tabs data
@@ -36,14 +39,19 @@ const Field: React.FC = () => {
 
   return (
     <>
-      <section className="about-us" style={{ backgroundImage: `url(${auBg})` }}>
+      <section className="field-hero-wrap">
         <div className="field-content">
-          <div className="about-us-intro">
+          <div className="about-field-intro">
             <h2 className="field-title">
               The fields in which we operate are highly sought after and demand
               a workforce of exceptional quality.
             </h2>
           </div>
+        </div>
+        <div className="about-field field-bg" style={{ display: 'flex', gap: '24px', background: 'none', boxShadow: 'none' }}>
+          <div style={{ flex: 1, minWidth: 0, minHeight: '320px', height: '380px', borderRadius: '18px', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundImage: `url(${auBg1})` }} />
+          <div style={{ flex: 1, minWidth: 0, minHeight: '320px', height: '380px', borderRadius: '18px', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundImage: `url(${auBg2})` }} />
+          <div style={{ flex: 1, minWidth: 0, minHeight: '320px', height: '380px', borderRadius: '18px', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundImage: `url(${auBg3})` }} />
         </div>
       </section>
 

@@ -258,7 +258,7 @@ const About: React.FC = () => {
 
 function Directors() {
   const [idx, setIdx] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 700);
   const [animating, setAnimating] = useState(false);
   const [reverse, setReverse] = useState(false);
 
@@ -326,24 +326,33 @@ function Directors() {
     );
   }
 
+  const positionClasses = ['tl', 'bl', 'rt', 'rb'];
+
   return (
     <div className="org-wrap">
       <div className="org-left">
         <div className="org-portrait five-dots">
-          {MEMBERS.map((member, i) => (
-            <button
-              key={i}
-              type="button"
-              className={`avatar avatar-sm dot ${
-                i === idx ? "active" : ""
-              }`}
-              onClick={() => setIdx(i)}
-              aria-label={member.name}
-              title={member.name}
-            >
-              <img src={member.photo} alt={member.name} />
-            </button>
-          ))}
+          {/* Avatar lớn hiển thị thành viên được chọn */}
+          <div className="avatar avatar-lg active">
+            <img src={MEMBERS[idx].photo} alt={MEMBERS[idx].name} />
+          </div>
+          
+          {/* 4 avatar nhỏ của các thành viên còn lại */}
+          {MEMBERS.filter((_, i) => i !== idx).slice(0, 4).map((member, i) => {
+            const originalIndex = MEMBERS.findIndex(m => m === member);
+            return (
+              <button
+                key={originalIndex}
+                type="button"
+                className={`avatar avatar-sm dot ${positionClasses[i]}`}
+                onClick={() => setIdx(originalIndex)}
+                aria-label={member.name}
+                title={member.name}
+              >
+                <img src={member.photo} alt={member.name} />
+              </button>
+            );
+          })}
         </div>
       </div>
       <div className="org-right">

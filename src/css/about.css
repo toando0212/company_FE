@@ -358,9 +358,9 @@
 .org-portrait.five-dots {
   --big: clamp(230px, 34vw, 250px);
   --small: clamp(110px, 10vw, 150px);
-  --gapX: 36px;
-  --padY: 32px;
-  --rightGapY: 44px;
+  --gapX: 86px;
+  --padY: 40px;
+  --rightGapY: 28px;
   --leftShiftX: clamp(130px, 10vw, 200px);
   position: relative;
   width: calc(var(--big) + var(--gapX) + var(--small));
@@ -389,8 +389,8 @@
     transform: translate(-50%, -50%);
   }
   .org-portrait.five-dots .avatar-sm.tl {
-    left: 50%;
-    top: 0;
+    left: 90%;
+    top: 10%;
     transform: translate(-50%, 0);
   }
   .org-portrait.five-dots .avatar-sm.bl {

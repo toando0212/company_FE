@@ -36,8 +36,8 @@ const Field: React.FC = () => {
 
   return (
     <>
-      <section className="about-us" style={{ backgroundImage: `url(${auBg})` }}>
-        <div className="field-content">
+    <section className="field-hero">
+    <div className="field-content">
           <div className="about-us-intro">
             <h2 className="field-title">
               The fields in which we operate are highly sought after and demand
@@ -45,6 +45,9 @@ const Field: React.FC = () => {
             </h2>
           </div>
         </div>
+        </section>
+      <section className="about-us field-bg" style={{ backgroundImage: `url(${auBg})` }}>
+        
       </section>
 
       {/* ===== Tabs section ===== */}

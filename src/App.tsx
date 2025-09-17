@@ -1,5 +1,3 @@
-
-
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -7,7 +5,6 @@ import About from './pages/About';
 import Field from './pages/Field';
 import Customer from './pages/Customer';
 import Career from './pages/Career';
-import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useRef } from 'react';
@@ -35,7 +32,7 @@ function AnimatedRoutes() {
             <Route path="/field" element={<Field />} />
             <Route path="/customer" element={<Customer />} />
             <Route path="/career" element={<Career />} />
-            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog" element={null} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>

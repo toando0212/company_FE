@@ -14,6 +14,13 @@
   margin-bottom: 18px;
 }
 
+/* Background image class */
+.field-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 /* ===== Tabs Fields ===== */
 .field-tabs {
   padding: 100px 16px 56px;
@@ -64,6 +71,28 @@
 
 /* Responsive */
 @media (max-width: 720px) {
+  .field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 800px;
+    padding-top: 100px; /* Tăng khoảng cách để text nằm trên background */
+  }
+  .field-bg {
+    padding-top: 19px;
+    background-size: 190vw auto;
+    background-position: bottom left; /* Căn giữa và nằm dưới text */
+    background-repeat: no-repeat;
+  }
+  .field-content {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+  .field-title {
+    text-align: center;
+  }
   .fld-tabbar { grid-template-columns: 1fr; }
   .fld-tab { height: 60px; }
 }

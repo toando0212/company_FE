@@ -258,7 +258,7 @@ const About: React.FC = () => {
 
 function Directors() {
   const [idx, setIdx] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 700);
   const [animating, setAnimating] = useState(false);
   const [reverse, setReverse] = useState(false);
 
@@ -281,6 +281,8 @@ function Directors() {
 
   const prev = () => handleChange(idx === 0 ? MEMBERS.length - 1 : idx - 1, true);
   const next = () => handleChange(idx === MEMBERS.length - 1 ? 0 : idx + 1, false);
+
+  const positionClasses = ['tl', 'bl', 'rt', 'rb'];
 
   if (isMobile) {
     return (
@@ -326,27 +328,42 @@ function Directors() {
     );
   }
 
+  // Desktop: hiệu ứng chuyển động cho avatar lớn và org-right
   return (
     <div className="org-wrap">
       <div className="org-left">
         <div className="org-portrait five-dots">
-          {MEMBERS.map((member, i) => (
-            <button
-              key={i}
-              type="button"
-              className={`avatar avatar-sm dot ${
-                i === idx ? "active" : ""
-              }`}
-              onClick={() => setIdx(i)}
-              aria-label={member.name}
-              title={member.name}
-            >
-              <img src={member.photo} alt={member.name} />
-            </button>
-          ))}
+          {/* Avatar lớn hiển thị thành viên được chọn */}
+          <div
+            className={`avatar avatar-lg active ${
+              animating ? "animating" : "next-in"
+            } ${reverse ? "reverse" : ""}`}
+          >
+            <img src={MEMBERS[idx].photo} alt={MEMBERS[idx].name} />
+          </div>
+          {/* 4 avatar nhỏ của các thành viên còn lại */}
+          {MEMBERS.filter((_, i) => i !== idx).slice(0, 4).map((member, i) => {
+            const originalIndex = MEMBERS.findIndex(m => m === member);
+            return (
+              <button
+                key={originalIndex}
+                type="button"
+                className={`avatar avatar-sm dot ${positionClasses[i]}`}
+                onClick={() => handleChange(originalIndex, originalIndex < idx)}
+                aria-label={member.name}
+                title={member.name}
+              >
+                <img src={member.photo} alt={member.name} />
+              </button>
+            );
+          })}
         </div>
       </div>
-      <div className="org-right">
+      <div
+        className={`org-right ${
+          animating ? "animating" : "next-in"
+        } ${reverse ? "reverse" : ""}`}
+      >
         <h2 className="org-name">{MEMBERS[idx].name}</h2>
         <div className="org-role">{MEMBERS[idx].role}</div>
         <p className="org-bio">{MEMBERS[idx].bio}</p>

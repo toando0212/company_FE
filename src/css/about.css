@@ -543,3 +543,19 @@
 .mv-badge-2{ background: radial-gradient(120% 120% at 20% 20%, #9be6a6, #3ac27a); }
 .mv-badge-3{ background: radial-gradient(120% 120% at 20% 20%, #a6c7ff, #5a8dff); }
 .mv-badge i{ font-size: 18px; }
+
+/* Hiệu ứng chuyển động cho avatar và info ở cả desktop và mobile */
+.org-wrap .avatar-lg,
+.org-wrap .org-right {
+  transition: opacity 0.35s ease;
+  will-change: opacity;
+}
+.org-wrap .avatar-lg.animating,
+.org-wrap .org-right.animating {
+  opacity: 0;
+  pointer-events: none;
+}
+/* .org-wrap .avatar-lg.animating.reverse,
+.org-wrap .org-right.animating.reverse {
+  /* Không cần transform cho hiệu ứng đơn giản */
+

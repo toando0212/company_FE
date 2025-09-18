@@ -536,8 +536,9 @@
 }
 
 
+
 :root{
-  --orbit-size: 650px;
+  --orbit-size: 580px; /* tăng kích thước vòng ngoài */
   --center-size: 220px;
   --speed: 30s;
   --card-bg: #fff;
@@ -600,8 +601,9 @@
   
 }
 
-.orbit-card i{ font-size:30px; color:var(--brand); }
-.orbit-card span{ font-size:14px; font-weight:600; line-height:1.2; }
+
+.orbit-card i{ font-size:22px; color:var(--brand); }
+.orbit-card span{ font-size:12px; font-weight:600; line-height:1.15; }
 
 
 /* Trung tâm */
@@ -645,11 +647,11 @@
   .center-card p {
     -webkit-line-clamp: 3;
     line-clamp: 3;
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 .badge {
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 /* Hover để tạm dừng vòng quay */
@@ -673,8 +675,8 @@
 /* Responsive nhỏ */
 @media (max-width: 640px){
   :root{
-    --orbit-size: 320px;
-    --center-size: 180px;
+    --orbit-size: 350px;
+    --center-size: 150px;
     --speed: 16s;
     --card-size: 110px;
   }
@@ -684,13 +686,13 @@
 
 @media (max-width: 480px){
   :root{
-    --orbit-size: 220px;
+    --orbit-size: 270px;
     --center-size: 120px;
     --card-size: 70px;
   }
-  .orbit-card{ width: var(--card-size); height: var(--card-size); font-size: 12px; }
+  .orbit-card{ width: var(--card-size); height: var(--card-size); font-size: 9px; }
   .center-card { width: var(--center-size); height: var(--center-size); padding: 12px 6px; }
-  .center-card .badge { font-size: 1rem; }
+  .center-card .badge { font-size: 15px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
